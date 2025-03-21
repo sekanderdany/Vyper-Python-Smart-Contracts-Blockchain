@@ -2,20 +2,26 @@
 """
 @license MIT 
 @title Buy Me A Coffee!
-@author You!
+@author Dany!
 @notice This contract is for creating a sample funding contract
 """
 
-@internal
+minimum_usd = uint256
+
+@deploy
+def __init__():
+    self.minimum_usd = 5
+
+@external
 @payable
-def _fund():
+def fund():
     """Allows users to send $ to this contract
     Have a minimum $ amount to send
 
     1. How do we send ETH to this contract?
     """
-    
-    assert msg.value == as_wei_value(1, "ether")
+    assert msg.value >= as_wei_value(1, "ether"), "You must spend more ETH!"
+    # http GET
 
 @external
 def withdraw():
